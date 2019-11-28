@@ -11,10 +11,17 @@ for line in input_file:
     char=line[0]
     ZhuYin=line[1]
     ZhuYin=ZhuYin.split('/')
+
+    if char not in ZhuYin_dict.keys():
+        ZhuYin_dict[char]=set()
+        ZhuYin_dict[char].add(char)
+
+
     for z in ZhuYin:
         if z[0] not in ZhuYin_dict:
-            ZhuYin_dict[z[0]]=[]
-        ZhuYin_dict[z[0]].append(char)
+            ZhuYin_dict[z[0]]=set()
+        if char not in ZhuYin_dict[z[0]]:
+            ZhuYin_dict[z[0]].add(char)
 
 for key in ZhuYin_dict.keys():
     line=''
