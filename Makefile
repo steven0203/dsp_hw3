@@ -28,5 +28,8 @@ map:
 	@#TODO
 	@#python3 mapping.py $(FROM) $(TO)
 
+test:test.cpp -loolm -ldstruct -lmisc
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o $@ $^
+
 clean:
 	$(RM) $(OBJ) $(TARGET)
