@@ -51,12 +51,13 @@ string Viterbi(string &line,Vocab &voc,Ngram &lm,map<string, vector<string>> &ma
     for (int i = 2; i < line.size(); i += 2) 
     {
         string word=line.substr(i,2);
-        double max_prob=-999;
-        int index;
         for(int j=0;j<mapping[word].size();++j)
         {
+            double max_prob=-999;
+            int index;
             for(int k=0;k<possible_line.size();++k)
             {
+                
                 string last_word=possible_line[k].substr(possible_line[k].length()-2,2);
                 if(probability[k]+getBigramProb(last_word.c_str(),mapping[word][j].c_str(),lm,voc)>max_prob)
                 {
