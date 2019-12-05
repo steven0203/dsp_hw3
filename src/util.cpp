@@ -20,7 +20,7 @@ void getMap(ifstream & infile, map<string, vector<string>> & mapping)
     string line;
     while (getline(infile, line)) { 
         int space_pos =0;
-        while (space_pos != -1) {   // remove all space in the input line
+        while (space_pos != -1) {   
             space_pos = line.find(' ');
             if (space_pos != -1)
                 line.erase(space_pos, 1);
