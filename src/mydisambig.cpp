@@ -33,7 +33,7 @@ int main(int argc, char *argv[]){
 
     while (getline(infile, line)) {
         string result=Viterbi(line,voc,lm,ChuYin_to_word);
-        outputResult(out,result);
+        outputResult(outfile,result);
     }
 
     outfile.close();
