@@ -29,7 +29,7 @@ void getMap(ifstream & infile, map<string, vector<string>> & mapping)
         string ChuYin = line.substr(0, 2);
         for(int i=2;i<line.size();i+=2)
         {
-            word=line.substr(i,2);
+            string word=line.substr(i,2);
             mapping[ChuYin].push_back(word);
         }
     }
@@ -88,7 +88,7 @@ string Viterbi(string &line,Vocab &voc,Ngram &lm,map<string, vector<string>> &ma
             max_prob=probability[i];
         }
     }
-    return string;
+    return result;
 }
 
 void outputResult(ofstream &out,string line)
