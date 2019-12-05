@@ -42,8 +42,8 @@ string Viterbi(string &line,Vocab &voc,Ngram &lm,map<string, vector<string>> &ma
     string first_word=line.substr(0,2);
     for(int i=0;i<mapping[first_word].size();++i)
     {
-        possible_line.push_back(mapping[first_word][j]);
-        probability.push_back(getBigramProb("<s>",mapping[first_word][j].c_str(),lm,voc));
+        possible_line.push_back(mapping[first_word][i]);
+        probability.push_back(getBigramProb("<s>",mapping[first_word][i].c_str(),lm,voc));
     }
 
     vector<string> temp_line;
