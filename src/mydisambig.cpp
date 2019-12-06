@@ -1,11 +1,7 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 #include <map>
-#include <set>
 #include <string>
-#include <cstring>
-#include <stdio.h>
 #include <fstream>
 
 #include "Ngram.h"
@@ -33,7 +29,7 @@ int main(int argc, char *argv[]){
 
     while (getline(infile, line)) {
         int space_pos =0;
-        while (space_pos != -1) {   // remove all space in the input line
+        while (space_pos != -1) {   
             space_pos = line.find(' ');
             if (space_pos != -1)
                 line.erase(space_pos, 1);
