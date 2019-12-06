@@ -95,7 +95,7 @@ string Viterbi(string &line,Vocab &voc,Ngram &lm,map<string, vector<string>> &ma
 
 void outputResult(ofstream &out,string line)
 {   
-    out<<"<s>";
+    out<<"<s> ";
     for(int i=0;i<line.length();i+=2)
     {
         out<<line.substr(i,2)<<" ";
