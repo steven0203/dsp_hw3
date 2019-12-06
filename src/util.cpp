@@ -39,12 +39,12 @@ void getMap(ifstream & infile, map<string, vector<string>> & mapping)
 
 string Viterbi(string &line,Vocab &voc,Ngram &lm,map<string, vector<string>> &mapping)
 {
-    vector<string> possible_line;
+    vector<string> possible;
     vector<double> probability;
     string first_word=line.substr(0,2);
     for(int i=0;i<mapping[first_word].size();++i)
     {
-        possible_line.push_back(mapping[first_word][i]);
+        possible.push_back(mapping[first_word][i]);
         probability.push_back(getBigramProb("<s>",mapping[first_word][i].c_str(),lm,voc));
     }
 
@@ -57,36 +57,36 @@ string Viterbi(string &line,Vocab &voc,Ngram &lm,map<string, vector<string>> &ma
         {
             double max_prob=-999;
             int index;
-            for(int k=0;k<possible_line.size();++k)
+            for(int k=0;k<possible.size();++k)
             {
-                string last_word=possible_line[k].substr(possible_line[k].length()-2,2);
+                string last_word=possible[k].substr(possible[k].length()-2,2);
                 if(probability[k]+getBigramProb(last_word.c_str(),mapping[word][j].c_str(),lm,voc)>max_prob)
                 {
                     max_prob=probability[k]+getBigramProb(last_word.c_str(),mapping[word][j].c_str(),lm,voc);
                     index=k;
                 }
             }
-            temp_line.push_back(possible_line[index]+mapping[word][j]);
+            temp_line.push_back(possible[index]+mapping[word][j]);
             temp_prob.push_back(max_prob);
         }
-        possible_line.clear();
+        possible.clear();
         probability.clear();
-        possible_line.assign(temp_line.begin(),temp_line.end());
+        possible.assign(temp_line.begin(),temp_line.end());
         probability.assign(temp_prob.begin(),temp_prob.end());
         temp_line.clear();
         temp_prob.clear();
     }
 
-    for(int i=0;i<possible_line.size();++i)
-        probability[i]+=getBigramProb(possible_line[i].substr(possible_line[i].length()-2,2).c_str(),"</s>",lm,voc);
+    for(int i=0;i<possible.size();++i)
+        probability[i]+=getBigramProb(possible[i].substr(possible[i].length()-2,2).c_str(),"</s>",lm,voc);
 
     string result;
     double max_prob=-999;
-    for(int i=0;i<possible_line.size();++i)
+    for(int i=0;i<possible.size();++i)
     {
         if(probability[i]>max_prob)
         {
-            result=possible_line[i];
+            result=possible[i];
             max_prob=probability[i];
         }
     }
