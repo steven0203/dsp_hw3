@@ -19,8 +19,8 @@ TO ?= ZhuYin-Big5.map
 $(TARGET): $(OBJ) -loolm -ldstruct -lmisc
 	$(CXX) $(LDFLAGS) -o $@ $^
 
-%.o: %.cpp ./src/mapping
-	$(CXX) $(CXXFLAGS) -c $<
+%.o: %.cpp ./src/util.h
+	$(CXX) $(CXXFLAGS) -c $@ $<
 
 all: $(TARGET)
 
