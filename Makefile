@@ -19,17 +19,13 @@ TO ?= ZhuYin-Big5.map
 $(TARGET): $(OBJ) -loolm -ldstruct -lmisc
 	$(CXX) $(LDFLAGS) -o $@ $^
 
-%.o: %.cpp
+%.o: %.cpp ./src/mapping
 	$(CXX) $(CXXFLAGS) -c $<
 
 all: $(TARGET)
 
 map:
-	@#TODO
-	@#python3 mapping.py $(FROM) $(TO)
-
-test:test.cpp -loolm -ldstruct -lmisc
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o $@ $^
+	python3 ./src/mapping.py $(FROM) $(TO)
 
 clean:
 	$(RM) $(OBJ) $(TARGET)
