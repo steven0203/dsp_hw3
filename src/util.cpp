@@ -18,9 +18,11 @@ double getBigramProb(const char *w1, const char *w2, Ngram &lm, Vocab &voc)
 void getMap(ifstream & infile, map<string, vector<string>> & mapping)
 {
     string line;
-    while (getline(infile, line)) { 
+    while (getline(infile, line)) 
+    { 
         int space_pos =0;
-        while (space_pos != -1) {   
+        while (space_pos != -1) 
+        {   
             space_pos = line.find(' ');
             if (space_pos != -1)
                 line.erase(space_pos, 1);
@@ -57,7 +59,6 @@ string Viterbi(string &line,Vocab &voc,Ngram &lm,map<string, vector<string>> &ma
             int index;
             for(int k=0;k<possible_line.size();++k)
             {
-                
                 string last_word=possible_line[k].substr(possible_line[k].length()-2,2);
                 if(probability[k]+getBigramProb(last_word.c_str(),mapping[word][j].c_str(),lm,voc)>max_prob)
                 {

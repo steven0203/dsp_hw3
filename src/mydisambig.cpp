@@ -10,7 +10,8 @@
 using namespace std;
 
 
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[])
+{
     ifstream infile(argv[1]);
     ifstream infile_map(argv[2]);
 
@@ -27,9 +28,11 @@ int main(int argc, char *argv[]){
     ofstream outfile(argv[4]);
     getMap(infile_map,ChuYin_to_word);
 
-    while (getline(infile, line)) {
+    while (getline(infile, line)) 
+    {
         int space_pos =0;
-        while (space_pos != -1) {   
+        while (space_pos != -1) 
+        {   
             space_pos = line.find(' ');
             if (space_pos != -1)
                 line.erase(space_pos, 1);
